@@ -50,46 +50,31 @@ Matrix3D& Matrix3D::operator-=(Matrix3D &other)
     return *this;
 }
 
-Matrix3D& Matrix3D::operator=*(Matrix3D &other)
+Matrix3D& Matrix3D::operator*=(Matrix3D &other)
 {
     return *Matrix3D(this*other);
 }
 
 Matrix3D Matrix3D::operator+(Matrix3D &other)
 {
-    return Matrix3D(this->firstRow + number, this,secondRow + number, this->thirdRow + number);
-
-//    double mul[3][3];
-//    for (int i = 0; i < 3; i ++)
-//    {
-//        for (int j = 0; j < 3; j ++)
-//        {
-//            mul[i][j] = this[i][j]+transposed[i][j];
-//        }
-//    }
-//    return Matrix3D(mul);
+    return Matrix3D(this->firstRow + other.firstRow,
+            this,secondRow + other.secondRow,
+            this->thirdRow + other.thirdRow);
 }
 
 Matrix3D Matrix3D::operator-(Matrix3D &other)
 {
-    return Matrix3D(this->firstRow - number, this,secondRow - number, this->thirdRow - number);
-//    double mul[3][3];
-//    for (int i = 0; i < 3; i ++)
-//    {
-//        for (int j = 0; j < 3; j ++)
-//        {
-//            mul[i][j] = this[i][j]-transposed[i][j];
-//        }
-//    }
-//    return Matrix3D(mul);
+    return Matrix3D(this->firstRow - other.firstRow,
+                    this,secondRow - other.secondRow,
+                    this->thirdRow - other.thirdRow);
 }
 
 Matrix3D Matrix3D::operator*(Matrix3D &other)
 {
     double mul[3][3];
-    Vector3D firstColume = Vector3D(other.firstRow[0], other.secondRow[0], other.thirdRow[0]);
-    Vector3D secondColume = Vector3D(other.firstRow[1], other.secondRow[1], other.thirdRow[1]);
-    Vector3D thirdColume = Vector3D(other.firstRow[2], other.secondRow[2], other.thirdRow[2]);
+    Vector3D firstColume = other.column(0);
+    Vector3D secondColume = other.column(1);
+    Vector3D thirdColume = other.column(2);
     Matrix3D transposed(firstColume,secondColume, thirdColume);
     for (int i = 0; i < 3; i ++)
     {
@@ -107,13 +92,101 @@ Matrix3D& Matrix3D::operator*=(double number)
     this->firstRow*=number;
     this,secondRow*=number;
     this->thirdRow*=number;
+    return *this;
 }
 
 Matrix3D& Matrix3D::operator/=(double number)
 {
+    if (!number)
+    {
+        cerr << "cants divide by zero";
+        return;
+    }
     this->firstRow/=number;
     this,secondRow/=number;
     this->thirdRow/=number;
+    return *this;
 }
+
+
+
+Vector3D Matrix3D::operator*(Vector3D vector)
+{
+    return Vector3D(this->firstRow*vector, this->secondRow*vector, this->thirdRow*vector);
+}
+
+istream Matrix3D::&operator>>(istream &is, Matrix3D &mat);
+
+ostream Matrix3D::&operator<<(ostream &os, const Matrix3D &mat);
+
+Matrix3D Matrix3D::&operator=(const Matrix3D &mat)
+{
+    this = Matrix3D(mat);
+    return *this;
+}
+
+Vector3D& Matrix3D::operator[](int index)
+{
+    if (index == 0)
+    {
+        return this->firstRow;
+    }
+    else if (index == 1)
+    {
+        return this->secondRow;
+    }
+    else if (index == 2)
+    {
+        return this->thirdRow;
+    }
+    else
+    {
+        cerr << "index out of bounderies";
+    }
+}
+
+Vector3D Matrix3D::operator[](int index) const
+{
+    if (index == 0)
+    {
+        return this->firstRow;
+    }
+    else if (index == 1)
+    {
+        return this->secondRow;
+    }
+    else if (index == 2)
+    {
+        return this->thirdRow;
+    }
+    else
+    {
+        cerr << "index out of bounderies ";
+    }
+}
+
+Vector3D Matrix3D::row(short index) const
+{
+    if (index >= 0 & index < 3)
+        return this[index];
+    else
+        cerr <<  "index out of bounderies ";
+}
+
+Vector3D Matrix3D::column(short index) const
+{
+    return Vector3D(other.firstRow[index], other.secondRow[index], other.thirdRow[index]);
+}
+
+double Matrix3D::trace() const
+{
+    return (this->firstRow[0] = this->secondRow[1] + this->thirdRow[2]);
+}
+
+double Matrix3D::determinant() const
+{
+ //TODO
+}
+
 
 
