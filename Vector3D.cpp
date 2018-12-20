@@ -252,7 +252,9 @@ istream &operator>>(istream &is, Vector3D &vec)
     for ( int i = 0; i < 3; i++)
     {
         if ( is >> arg)
+        {
             vec[i] = arg;
+        }
     }
     return is;
 }
