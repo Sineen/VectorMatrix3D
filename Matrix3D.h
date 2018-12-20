@@ -9,6 +9,10 @@
 
 using namespace std;
 
+/**
+ *
+ */
+
 class Matrix3D
 {
 private:
@@ -34,12 +38,8 @@ public:
     /**
      *constructor with 9 numbers
      */
-    Matrix3D(double x1, double x2, double x3,
-            double x4, double x5, double x6,
-            double x7, double x8, double x9):
-            firstRow(Vector3D(x1, x2, x3)),
-            secondRow(Vector3D(x4, x5, x6)),
-            thirdRow(Vector3D(x7, x8, x9)){}
+    Matrix3D(double x1, double x2, double x3, double x4, double x5, double x6, double x7, double x8, double x9):
+            firstRow(Vector3D(x1, x2, x3)), secondRow(Vector3D(x4, x5, x6)), thirdRow(Vector3D(x7, x8, x9)){}
     /**
      * constructor wit an array of 9 doubles
      */
@@ -59,132 +59,123 @@ public:
     Matrix3D(const Vector3D& firstVector, const Vector3D& secondVector, const Vector3D& thirdVector);
 
     /**
-     *
-     * @param second
+     *  constructor from another matrix3D
+     * @param second the second 3D Matrix
      */
     Matrix3D(const Matrix3D& second);
 
     /**
-     *
-     * @param other
-     * @return
+     * addes two matrixes
+     * @param other a second matrix
+     * @return the matrix of this class
      */
     Matrix3D& operator+=(const Matrix3D &other);
 
     /**
-     *
-     * @param other
-     * @return
+     * subtracts two matrixes  and puts the vlaues  on teh matrix in the class
+     * @param other a second matrix
+     * @return the matrix of the class
      */
     Matrix3D& operator-=(const Matrix3D &other);
 
     /**
-     *
-     * @param other
-     * @return
+     * multiplications two matrixes  and puts the vlaues  on teh matrix in the class
+     * @param other a second matrix
+     * @return the matrix of the class
      */
     Matrix3D& operator*=(const Matrix3D &other);
 
     /**
-     *
-     * @param other
-     * @return
+     * addes the object of this class to other adn makes a new matrix and returns that
+     * @param other another matrix3D
      */
     Matrix3D operator+(const Matrix3D &other);
 
     /**
-     *
-     * @param other
-     * @return
+     * subtracts the object of this class to other adn makes a new matrix and returns that
+     * @param other another matrix3D
      */
     Matrix3D operator-(const Matrix3D &other);
 
     /**
-     *
-     * @param other
-     * @return
+     * multiplication the object of this class to other adn makes a new matrix and returns that
+     * @param other another matrix3D
      */
     Matrix3D operator*(const Matrix3D &other);
 
     /**
-     *
-     * @param number
-     * @return
+     * @param number a double number
+     * @return multiplications of the matrix with the number and returns the object
      */
     Matrix3D& operator*=(double number);
 
     /**
-     *
+     * @param number a double number
+     * @return multiplications of the matrix with the number and returns the object
      */
     Matrix3D& operator/=(double number);
 
     /**
-     *
-     * @param vector
-     * @return
+     * @param vector a vectro of type VECTOR 3D
+     * @return a vector 3d that is a multiplication of the matrix and the vector
      */
     Vector3D operator*(const Vector3D vector);
 
     /**
-     *
-     * @param is
-     * @param mat
-     * @return
+     * @param is an input stream
+     * @param mat a matrix
+     * @return reads the values from the input and puts it in mat
      */
     friend istream &operator>>(istream &is, Matrix3D &mat);
 
     /**
-     *
-     * @param os
-     * @param mat
-     * @return
+     * @param os the output stream
+     * @param mat a matrix 3D
+     * @return reads what we have matrix into the os
      */
     friend ostream &operator<<(ostream &os, const Matrix3D &mat);
 
     /**
-     *
-     * @param mat
-     * @return
+     * @param mat a matrix3D
+     * @return uplouds teh matrix in the object of teh class
      */
     Matrix3D &operator=(const Matrix3D &mat);
 
     /**
-     *
-     * @param index
-     * @return
+     * @param index number of index we want
+     * @return a refrence that is in the palce of the index
      */
     Vector3D& operator[](int index);
 
     /**
      *
-     * @param index
-     * @return
+      * @param index number of index we want
+     * @return a value that is in the palce of the index
      */
     Vector3D operator[](int index) const;
 
     /**
      *
-     * @param index
-     * @return
+     * @param index numebr of row we want
+     * @return teh row of number index
      */
     Vector3D row(short index) const;
 
     /**
-     *
-     * @param index
-     * @return
+     * @param index numebr of colum we want
+     * @return teh colum of number index
      */
     Vector3D column(short index) const;
 
     /**
-     *
-     * @return
+     * the trace of teh matrix
+     * @return sum of values in diagonal
      */
     double trace() const;
 
     /**
      *
-     * @return
+     * @return teh determinants of the matrix
      */
     double determinant() const;
 };
