@@ -32,7 +32,7 @@ Vector3D::Vector3D(double x, double y, double z)
  *
  * @param coordinates
  */
-Vector3D::Vector3D(double *coordinates)
+Vector3D::Vector3D(const double *coordinates)
 {
     V->cordX = coordinates[0];
     V->cordY = coordinates[1];
@@ -251,16 +251,10 @@ istream &operator>>(istream &is, Vector3D &vec)
     double arg;
     for ( int i = 0; i < 3; i++)
     {
-//        if ( is >> arg)
-//        {
+        if ( is >> arg)
             vec[i] = arg;
-        //}
-//        else
-//        {
-//            cerr << " missing values\n";
-//        }
     }
-
+    return is;
 }
 
 /**

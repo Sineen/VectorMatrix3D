@@ -34,31 +34,31 @@ public:
             secondRow(Vector3D(x4, x5, x6)),
             thirdRow(Vector3D(x7, x8, x9)){}
 
-    Matrix3D(double array[9]);
+    Matrix3D(const double array[9]);
 
-    Matrix3D(double coordinates[3][3]);
+    Matrix3D(const double coordinates[3][3]);
 
-    Matrix3D(Vector3D& firstVector, Vector3D& secondVector, Vector3D& thirdVector);
+    Matrix3D(const Vector3D& firstVector, const Vector3D& secondVector, const Vector3D& thirdVector);
 
-    Matrix3D(Matrix3D& second);
+    Matrix3D(const Matrix3D& second);
 
-    Matrix3D& operator+=(Matrix3D &other);
+    Matrix3D& operator+=(const Matrix3D &other);
 
-    Matrix3D& operator-=(Matrix3D &other);
+    Matrix3D& operator-=(const Matrix3D &other);
 
-    Matrix3D& operator*=(Matrix3D &other);
+    Matrix3D& operator*=(const Matrix3D &other);
 
-    Matrix3D operator+(Matrix3D &other);
+    Matrix3D operator+(const Matrix3D &other);
 
-    Matrix3D operator-(Matrix3D &other);
+    Matrix3D operator-(const Matrix3D &other);
 
-    Matrix3D operator*(Matrix3D &other);
+    Matrix3D operator*(const Matrix3D &other);
 
     Matrix3D& operator*=(double number);
 
     Matrix3D& operator/=(double number);
 
-    Vector3D operator*(Vector3D vector);
+    Vector3D operator*(const Vector3D vector);
 
     friend istream &operator>>(istream &is, Matrix3D &mat);
 

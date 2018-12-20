@@ -49,7 +49,7 @@ public:
      * Constructor that initializes the Vector tho the given coordinates passed in array.
      * @param coordinates array size of 3, contains the coordinates.
      */
-    Vector3D(double coordinates[3]);
+    Vector3D(const double coordinates[3]);
 
     /**
      * Copy Constructor, copies the values of coordinates of other vector to the current vector.
