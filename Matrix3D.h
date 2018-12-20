@@ -46,7 +46,7 @@ public:
 
     Matrix3D& operator-=(Matrix3D &other);
 
-    Matrix3D& operator=*(Matrix3D &other);
+    Matrix3D& operator*=(Matrix3D &other);
 
     Matrix3D operator+(Matrix3D &other);
 
@@ -58,9 +58,25 @@ public:
 
     Matrix3D& operator/=(double number);
 
+    Vector3D operator*(Vector3D vector);
 
+    friend istream &operator>>(istream &is, Matrix3D &mat);
 
+    friend ostream &operator<<(ostream &os, const Matrix3D &mat);
 
+    Matrix3D &operator=(const Matrix3D &mat);
+
+    Vector3D& operator[](int index);
+
+    Vector3D operator[](int index) const;
+
+    Vector3D row(short index) const;
+
+    Vector3D column(short index) const;
+
+    double trace() const;
+
+    double determinant() const;
 };
 
 #endif //EX1VM_MATRIX3D_H
