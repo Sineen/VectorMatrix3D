@@ -39,21 +39,16 @@ public:
 
     /**
      * Constructor that initializes the Vector to the given coordinates.
-     * @param x represents the first coordinate.
-     * @param y represents the second coordinate.
-     * @param z represents the third coordinate.
      */
     Vector3D(double x, double y, double z);
 
     /**
-     * Constructor that initializes the Vector tho the given coordinates passed in array.
-     * @param coordinates array size of 3, contains the coordinates.
+     * Constructor that initializes the Vector tho the given coordinates passed in array of 3.
      */
     Vector3D(const double coordinates[3]);
 
     /**
      * Copy Constructor, copies the values of coordinates of other vector to the current vector.
-     * @param other represents other vector to be copied.
      */
     Vector3D(const Vector3D& other);
 

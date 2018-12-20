@@ -235,6 +235,7 @@ Vector3D& Matrix3D::operator[](int index)
     else
     {
         cerr << "index out of bounderies";
+        exit(1);
     }
 }
 
@@ -260,6 +261,7 @@ Vector3D Matrix3D::operator[](int index) const
     else
     {
         cerr << "index out of bounderies ";
+        exit(1);
     }
 }
 
@@ -277,6 +279,7 @@ Vector3D Matrix3D::row(short index) const
     else
     {
         cerr <<  "index out of bounderies ";
+        exit(1);
     }
 }
 

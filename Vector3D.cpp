@@ -299,6 +299,7 @@ double &Vector3D::operator[](int index)
             return V->cordZ;
         default:
             cerr << "index out of vector's boundaries";
+            exit(1);
     }
 }
 
@@ -319,6 +320,7 @@ double Vector3D::operator[](int index) const
             return V->cordZ;
         default:
             cerr << "index out of vector's boundaries";
+            exit(1);
     }
 }
 

@@ -122,7 +122,7 @@ public:
     Vector3D operator*(const Vector3D vector);
 
     /**
-     * @param is an input stream
+     * recieves matrix from stdin
      * @param mat a matrix
      * @return reads the values from the input and puts it in mat
      */
