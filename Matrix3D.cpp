@@ -8,14 +8,14 @@ Matrix3D::Matrix3D(const double *array)
 {
     this->firstRow = (Vector3D(array[0], array[1], array[2]));
     this->secondRow = (Vector3D(array[3], array[4], array[5]));
-    this->firstRow = (Vector3D(array[6], array[7], array[8]));
+    this->thirdRow = (Vector3D(array[6], array[7], array[8]));
 }
 
 Matrix3D::Matrix3D(const double (*coordinates)[3])
 {
     this->firstRow = (Vector3D(coordinates[0][0], coordinates[0][1], coordinates[0][2]));
     this->secondRow = (Vector3D(coordinates[1][0], coordinates[1][1], coordinates[1][2]));
-    this->firstRow = (Vector3D(coordinates[2][0], coordinates[2][1], coordinates[2][2]));
+    this->thirdRow = (Vector3D(coordinates[2][0], coordinates[2][1], coordinates[2][2]));
 }
 
 Matrix3D::Matrix3D(const Vector3D& firstVector, const Vector3D& secondVector, const Vector3D& thirdVector)
@@ -133,7 +133,9 @@ ostream &operator<<(ostream &os, const Matrix3D &mat)
 
 Matrix3D &Matrix3D::operator=(const Matrix3D &mat)
 {
-    *this = Matrix3D(mat);
+    this->firstRow = mat[0];
+    this->secondRow = mat[1];
+    this->thirdRow = mat[2];
     return *this;
 }
 
